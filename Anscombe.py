@@ -24,7 +24,7 @@ print(anscombe_df.var().round(1))
 
 scatter_plot_df = anscombe_df.reset_index()
 
-fig, axs = plt.subplots(2,2, sharex=True, sharey=True, figsize=(6, 6))
+fig, axs = plt.subplots(2, 2, sharex=True, sharey=True, figsize=(6, 6))
 
 axs[0, 0].set(xlim=(0, 20), ylim=(2, 14))
 axs[0, 0].set(xticks=(0, 10, 20), yticks=(0, 4, 8, 12))
@@ -42,4 +42,4 @@ sample_file_name = "sample"
 if not os.path.isdir(results_dir):
     os.makedirs(results_dir)
 
-plt.savefig( results_dir, 'quartet.png')
+plt.savefig(results_dir, 'quartet.png')
