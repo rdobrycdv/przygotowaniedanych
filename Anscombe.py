@@ -1,6 +1,6 @@
-import os
 import pandas as pd
 import matplotlib.pyplot as plt
+import os
 
 x = [10, 8, 13, 9, 11, 14, 6, 4, 12, 7, 5]
 y1 = [8.04, 6.95, 7.58, 8.81, 8.33, 9.96, 7.24, 4.26, 10.84, 4.82, 5.68]
@@ -17,30 +17,30 @@ df_dict = {
 }
 
 anscombe_df = pd.DataFrame(df_dict, index=x)
+os.mkdir('results')
 
-print(anscombe_df.mean().round(2))
-print(anscombe_df.std(ddof=0).round(2))
-print(anscombe_df.reset_index().corr().round(2))
-print(anscombe_df.var().round(1))
+results = {'Mean': [anscombe_df.mean().round(2)],
+           'Standard deviation': [anscombe_df.std(ddof=0).round(2)],
+           'Correlation': [anscombe_df.reset_index().corr().round(2)],
+           'Variation': [anscombe_df.var().round(1)]}
+results_csv = pd.DataFrame(results)
+
+results_csv.to_csv(f'results/numeral_results.csv', index=False, header=True, sep=',')
 
 scatter_plot_df = anscombe_df.reset_index()
 
 fig, axs = plt.subplots(2, 2, sharex=True, sharey=True, figsize=(6, 6))
+fig.suptitle('Anscombe quartet results', fontsize=16)
+for i, ax in enumerate(axs.flat):
+    ax.set_title(f'Plot number {i+1}')
+plt.setp(axs[-1, :], xlabel='x axis')
+plt.setp(axs[:, 0], ylabel='y axis')
 
 axs[0, 0].set(xlim=(0, 20), ylim=(2, 14))
 axs[0, 0].set(xticks=(0, 10, 20), yticks=(0, 4, 8, 12))
-
 axs[0, 0].scatter(x, y1)
 axs[0, 1].scatter(x, y2)
 axs[1, 0].scatter(x, y3)
 axs[1, 1].scatter(x4, y4)
 
-plt.show()
-script_dir = os.path.dirname(__file__)
-results_dir = os.path.join(script_dir, 'Results/')
-sample_file_name = "sample"
-
-if not os.path.isdir(results_dir):
-    os.makedirs(results_dir)
-
-plt.savefig(results_dir, 'quartet.png')
+plt.savefig(f'results/charts.png')
