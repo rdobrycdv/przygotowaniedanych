@@ -19,13 +19,13 @@ df_dict = {
 anscombe_df = pd.DataFrame(df_dict, index=x)
 os.mkdir('results')
 
-results = {'Mean': [anscombe_df.mean().round(2)],
-           'Standard deviation': [anscombe_df.std(ddof=0).round(2)],
-           'Correlation': [anscombe_df.reset_index().corr().round(2)],
-           'Variation': [anscombe_df.var().round(1)]}
-results_csv = pd.DataFrame(results)
+results = {'mean': [anscombe_df.mean()],
+           'correlation': [anscombe_df.reset_index().corr()],
+           'standard deviation': [anscombe_df.std(ddof=0)],
+           'variation': [anscombe_df.var()]}
+csv_results = pd.DataFrame(results)
 
-results_csv.to_csv(f'results/numeral_results.csv', index=False, header=True, sep=',')
+csv_results.to_csv(f'results/numeral_results.csv', index=False, header=True, sep=',')
 
 scatter_plot_df = anscombe_df.reset_index()
 
