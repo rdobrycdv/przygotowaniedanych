@@ -23,6 +23,7 @@ results = {'mean': [anscombe_df.mean()],
            'correlation': [anscombe_df.reset_index().corr()],
            'standard deviation': [anscombe_df.std(ddof=0)],
            'variation': [anscombe_df.var()]}
+
 csv_results = pd.DataFrame(results)
 
 csv_results.to_csv(f'results/numeral_results.csv', index=False, header=True, sep=',')
