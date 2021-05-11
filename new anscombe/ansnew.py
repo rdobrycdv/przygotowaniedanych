@@ -9,7 +9,7 @@ def create_dataframe(df_dict):
     return anscombe_df
 
 
-def crete_directory():
+def create_directory():
     return os.makedirs('results', exist_ok=True)
 
 
@@ -49,4 +49,17 @@ axs[0, 1].scatter(x, y2)
 axs[1, 0].scatter(x, y3)
 axs[1, 1].scatter(x4, y4)
 
-plt.savefig(f'results/charts.png')
+def save_plot():
+    return plt.savefig(f'results/charts.png')
+
+
+def main():
+    anscombe_df = create_dataframe(df_dict)
+    create_directory()
+    results = calculations(anscombe_df)
+    csv_results = results_to_csv(results)
+    saving_results_to_csv(csv_results)
+    plot(anscombe_df)
+
+if __name__ == '__main__':
+    main()
