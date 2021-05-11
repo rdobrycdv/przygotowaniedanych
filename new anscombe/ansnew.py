@@ -22,8 +22,7 @@ def calculations(anscombe_df):
 
 
 def results_to_csv(results):
-    csv_results = pd.DataFrame(results)
-    return csv_results
+    return pd.DataFrame(results)
 
 
 def saving_results_to_csv(csv_results):
