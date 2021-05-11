@@ -16,21 +16,32 @@ df_dict = {
     'IV': y4
 }
 
-def create_dataframe(df_dict, df)
-    pd.DataFrame(df_dict, index=x)
+def create_dataframe(df_dict: dict):
+    anscombe_df = pd.DataFrame(df_dict, index=x)
+    return anscombe_df
 
 
-os.makedirs('results', exist_ok=True)
+def crete_directory():
+    return os.makedirs('results', exist_ok=True)
 
-results = {'mean': [anscombe_df.mean()],
+def calculations(anscombe_df):
+    results = {'mean': [anscombe_df.mean()],
            'correlation': [anscombe_df.reset_index().corr()],
            'standard deviation': [anscombe_df.std(ddof=0)],
            'variation': [anscombe_df.var()]}
-csv_results = pd.DataFrame(results)
+    return results
 
-csv_results.to_csv(f'results/numeral_results.csv', index=False, header=True, sep=',')
 
-scatter_plot_df = anscombe_df.reset_index()
+def results_to_csv(results):
+    csv_results = pd.DataFrame(results)
+    return csv_results
+
+
+def results_to_csv(csv_results):
+    return csv_results.to_csv(f'results/numeral_results.csv', index=False, header=True, sep=',')
+
+def plot(anscombe_df):
+    scatter_plot_df = anscombe_df.reset_index()
 
 fig, axs = plt.subplots(2, 2, sharex=True, sharey=True, figsize=(6, 6))
 fig.suptitle('Anscombe quartet results', fontsize=16)
